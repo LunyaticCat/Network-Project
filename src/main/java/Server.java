@@ -40,7 +40,6 @@ public class Server {
 
             in.read(messageInBytes, 0, 8);
             cipherDES.init(Cipher.DECRYPT_MODE, secretKey);
-            System.out.println(Arrays.toString(messageInBytes));
             messageIn = new String(cipherDES.doFinal(messageInBytes));
             System.out.println(messageIn);
 
