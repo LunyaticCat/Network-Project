@@ -36,17 +36,17 @@ public class Server {
 
         while(true) {
             String messageOut, messageIn;
-            byte[] messageInBytes = new byte[128];
+            byte[] messageInBytes = new byte[8];
 
-            in.read(messageInBytes, 0, 128);
+            in.read(messageInBytes, 0, 8);
             cipherDES.init(Cipher.DECRYPT_MODE, secretKey);
+            System.out.println(Arrays.toString(messageInBytes));
             messageIn = new String(cipherDES.doFinal(messageInBytes));
             System.out.println(messageIn);
 
             messageOut = scanner.nextLine();
             cipherDES.init(Cipher.ENCRYPT_MODE, secretKey);
             out.write(cipherDES.doFinal(messageOut.getBytes()));
-
         }
     }
 }

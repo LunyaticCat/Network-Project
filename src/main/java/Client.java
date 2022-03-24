@@ -56,14 +56,13 @@ public class Client {
 
         while (true) {
             String messageOut, messageIn;
-            byte[] messageInBytes = new byte[128];
+            byte[] messageInBytes = new byte[8];
 
             messageOut = scanner.nextLine();
             cipherDES.init(Cipher.ENCRYPT_MODE, CleDES);
             out.write(cipherDES.doFinal(messageOut.getBytes()));
-            System.out.println(messageOut.length());
 
-            in.read(messageInBytes, 0, 128);
+            in.read(messageInBytes, 0, 8);
             cipherDES.init(Cipher.DECRYPT_MODE, CleDES);
             messageIn = new String(cipherDES.doFinal(messageInBytes));
             System.out.println(messageIn);
